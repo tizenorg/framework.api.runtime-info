@@ -1,3 +1,11 @@
+capi-system-runtime-info (0.0.1-11) unstable; urgency=low
+
+  * Fixed prevent defect case : CID 10685
+  * Git: framework/api/runtime-info
+  * Tag: capi-system-runtime-info_0.0.1-11
+
+ -- Yonghyun Yang <alex.yang@samsung.com>  Mon, 15 Oct 2012 15:40:00 +0900
+
 capi-system-runtime-info (0.0.1-9) unstable; urgency=low
 
   * Applying vconf-key changes
