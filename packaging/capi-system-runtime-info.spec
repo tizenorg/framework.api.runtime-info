@@ -9,7 +9,7 @@ BuildRequires:  cmake
 BuildRequires:  pkgconfig(dlog)
 BuildRequires:  pkgconfig(vconf)
 BuildRequires:  pkgconfig(capi-base-common)
-Requires(post): /sbin/ldconfig  
+Requires(post): /sbin/ldconfig
 Requires(postun): /sbin/ldconfig
 
 %description
@@ -30,8 +30,8 @@ Requires:  pkgconfig(capi-base-common)
 
 
 %build
-MAJORVER=`echo %{version} | awk 'BEGIN {FS="."}{print $1}'`  
-cmake . -DCMAKE_INSTALL_PREFIX=/usr -DFULLVER=%{version} -DMAJORVER=${MAJORVER} 
+MAJORVER=`echo %{version} | awk 'BEGIN {FS="."}{print $1}'`
+cmake . -DCMAKE_INSTALL_PREFIX=/usr -DFULLVER=%{version} -DMAJORVER=${MAJORVER}
 
 
 make %{?jobs:-j%jobs}
@@ -47,10 +47,9 @@ rm -rf %{buildroot}
 
 %files
 %{_libdir}/lib*.so.*
+%manifest runtime-info.manifest
 
 %files devel
 %{_includedir}/system/*.h
 %{_libdir}/pkgconfig/*.pc
 %{_libdir}/lib*.so
-
-
