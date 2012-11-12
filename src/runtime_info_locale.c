@@ -130,13 +130,20 @@ void runtime_info_first_day_of_week_unset_event_cb()
 int runtime_info_language_get_value(runtime_info_value_h value)
 {
 	char *vconf_value;
-	
+	char *token = NULL;
+
 	if (runtime_info_vconf_get_value_string(VCONF_LANGUAGE, &vconf_value))
 	{
 		return RUNTIME_INFO_ERROR_IO_ERROR;
 	}
 
-	value->s = vconf_value;
+	token = strtok(vconf_value, ".");
+	value->s = strdup(token);
+	free(vconf_value);
+	if (value->s == NULL) {
+		LOGE("[%s] OUT_OF_MEMORY(0x%08x)", __func__, RUNTIME_INFO_ERROR_OUT_OF_MEMORY);
+		return RUNTIME_INFO_ERROR_OUT_OF_MEMORY;
+	}
 
 	return RUNTIME_INFO_ERROR_NONE;
 }
