@@ -28,7 +28,7 @@
 #undef LOG_TAG
 #endif
 
-#define LOG_TAG "TIZEN_N_RUNTIME_INFO"
+#define LOG_TAG "CAPI_SYSTEM_RUNTIME_INFO"
 
 #define RUNTIME_INFO_MAX -1
 
@@ -341,24 +341,24 @@ int runtime_info_get_value(runtime_info_key_e key, runtime_info_data_type_e data
 	runtime_info_func_get_value get_value;
 
 	if (runtime_info_get_item(key, &runtime_info_item))	{
-		LOGE("[%s] INVALID_PARAMETER(0x%08x) : invalid key", __FUNCTION__, RUNTIME_INFO_ERROR_INVALID_PARAMETER);
+		LOGE("INVALID_PARAMETER(0x%08x) : invalid key", RUNTIME_INFO_ERROR_INVALID_PARAMETER);
 		return RUNTIME_INFO_ERROR_INVALID_PARAMETER;
 	}
 
 	if (runtime_info_item->data_type != data_type) {
-		LOGE("[%s] INVALID_PARAMETER(0x%08x) : invalid data type", __FUNCTION__, RUNTIME_INFO_ERROR_INVALID_PARAMETER);
+		LOGE("INVALID_PARAMETER(0x%08x) : invalid data type", RUNTIME_INFO_ERROR_INVALID_PARAMETER);
 		return RUNTIME_INFO_ERROR_INVALID_PARAMETER;
 	}
 
 	get_value = runtime_info_item->get_value;
 
 	if (get_value == NULL) {
-		LOGE("[%s] IO_ERROR(0x%08x) : failed to call getter for the runtime information", __FUNCTION__, RUNTIME_INFO_ERROR_IO_ERROR);
+		LOGE("IO_ERROR(0x%08x) : failed to call getter for the runtime information", RUNTIME_INFO_ERROR_IO_ERROR);
 		return RUNTIME_INFO_ERROR_IO_ERROR;
 	}
 
 	if (get_value(value) != RUNTIME_INFO_ERROR_NONE) {
-		LOGE("[%s] IO_ERROR(0x%08x) : failed to get the runtime informaion / key(%d)", __FUNCTION__, RUNTIME_INFO_ERROR_IO_ERROR, key);
+		LOGE("IO_ERROR(0x%08x) : failed to get the runtime informaion / key(%d)", RUNTIME_INFO_ERROR_IO_ERROR, key);
 		return RUNTIME_INFO_ERROR_IO_ERROR;
 	}
 
@@ -371,15 +371,14 @@ int runtime_info_get_value_int(runtime_info_key_e key, int *value)
 	runtime_info_value_u runtime_info_value;
 
 	if (value == NULL) {
-		LOGE("[%s] INVALID_PARAMETER(0x%08x) : invalid output param", __FUNCTION__, RUNTIME_INFO_ERROR_INVALID_PARAMETER);
+		LOGE("INVALID_PARAMETER(0x%08x) : invalid output param", RUNTIME_INFO_ERROR_INVALID_PARAMETER);
 		return RUNTIME_INFO_ERROR_INVALID_PARAMETER;
 	}
 
 	retcode = runtime_info_get_value(key, RUNTIME_INFO_DATA_TYPE_INT, &runtime_info_value);
 
-	if (retcode == RUNTIME_INFO_ERROR_NONE)	{
+	if (retcode == RUNTIME_INFO_ERROR_NONE)
 		*value = runtime_info_value.i;
-	}
 
 	return retcode;
 }
@@ -390,15 +389,14 @@ int runtime_info_get_value_bool(runtime_info_key_e key, bool *value)
 	runtime_info_value_u runtime_info_value;
 
 	if (value == NULL) {
-		LOGE("[%s] INVALID_PARAMETER(0x%08x) : invalid output param", __FUNCTION__, RUNTIME_INFO_ERROR_INVALID_PARAMETER);
+		LOGE("INVALID_PARAMETER(0x%08x) : invalid output param", RUNTIME_INFO_ERROR_INVALID_PARAMETER);
 		return RUNTIME_INFO_ERROR_INVALID_PARAMETER;
 	}
 
 	retcode = runtime_info_get_value(key, RUNTIME_INFO_DATA_TYPE_BOOL, &runtime_info_value);
 
-	if (retcode == RUNTIME_INFO_ERROR_NONE) {
+	if (retcode == RUNTIME_INFO_ERROR_NONE)
 		*value = runtime_info_value.b;
-	}
 
 	return retcode;
 }
@@ -409,15 +407,14 @@ int runtime_info_get_value_double(runtime_info_key_e key, double *value)
 	runtime_info_value_u runtime_info_value;
 
 	if (value == NULL) {
-		LOGE("[%s] INVALID_PARAMETER(0x%08x) : invalid output param", __FUNCTION__, RUNTIME_INFO_ERROR_INVALID_PARAMETER);
+		LOGE("INVALID_PARAMETER(0x%08x) : invalid output param", RUNTIME_INFO_ERROR_INVALID_PARAMETER);
 		return RUNTIME_INFO_ERROR_INVALID_PARAMETER;
 	}
 
 	retcode = runtime_info_get_value(key, RUNTIME_INFO_DATA_TYPE_DOUBLE, &runtime_info_value);
 
-	if (retcode == RUNTIME_INFO_ERROR_NONE)	{
+	if (retcode == RUNTIME_INFO_ERROR_NONE)
 		*value = runtime_info_value.d;
-	}
 
 	return retcode;
 }
@@ -428,15 +425,14 @@ int runtime_info_get_value_string(runtime_info_key_e key, char **value)
 	runtime_info_value_u runtime_info_value;
 
 	if (value == NULL) {
-		LOGE("[%s] INVALID_PARAMETER(0x%08x) : invalid output param", __FUNCTION__, RUNTIME_INFO_ERROR_INVALID_PARAMETER);
+		LOGE("INVALID_PARAMETER(0x%08x) : invalid output param", RUNTIME_INFO_ERROR_INVALID_PARAMETER);
 		return RUNTIME_INFO_ERROR_INVALID_PARAMETER;
 	}
 
 	retcode = runtime_info_get_value(key, RUNTIME_INFO_DATA_TYPE_STRING, &runtime_info_value);
 
-	if (retcode == RUNTIME_INFO_ERROR_NONE)	{
+	if (retcode == RUNTIME_INFO_ERROR_NONE)
 		*value = runtime_info_value.s;
-	}
 
 	return retcode;
 }
@@ -448,19 +444,19 @@ int runtime_info_set_changed_cb(runtime_info_key_e key, runtime_info_changed_cb 
 	bool subscribe_event = false;
 
 	if (callback == NULL) {
-		LOGE("[%s] INVALID_PARAMETER(0x%08x)", __FUNCTION__, RUNTIME_INFO_ERROR_INVALID_PARAMETER);
+		LOGE("INVALID_PARAMETER(0x%08x)", RUNTIME_INFO_ERROR_INVALID_PARAMETER);
 		return RUNTIME_INFO_ERROR_INVALID_PARAMETER;
 	}
 
 	if (runtime_info_get_item(key, &runtime_info_item))	{
-		LOGE("[%s] INVALID_PARAMETER(0x%08x) : invalid key", __FUNCTION__, RUNTIME_INFO_ERROR_INVALID_PARAMETER);
+		LOGE("INVALID_PARAMETER(0x%08x) : invalid key", RUNTIME_INFO_ERROR_INVALID_PARAMETER);
 		return RUNTIME_INFO_ERROR_INVALID_PARAMETER;
 	}
 
 	set_event_cb = runtime_info_item->set_event_cb;
 
 	if (set_event_cb == NULL) {
-		LOGE("[%s] IO_ERROR(0x%08x) : failed to set callback for the runtime information", __FUNCTION__, RUNTIME_INFO_ERROR_IO_ERROR);
+		LOGE("IO_ERROR(0x%08x) : failed to set callback for the runtime information", RUNTIME_INFO_ERROR_IO_ERROR);
 		return RUNTIME_INFO_ERROR_IO_ERROR;
 	}
 
@@ -471,7 +467,7 @@ int runtime_info_set_changed_cb(runtime_info_key_e key, runtime_info_changed_cb 
 		event_subscription = malloc(sizeof(runtime_info_event_subscription_s));
 
 		if (event_subscription == NULL)	{
-			LOGE("[%s] OUT_OF_MEMORY(0x%08x)", __FUNCTION__, RUNTIME_INFO_ERROR_OUT_OF_MEMORY);
+			LOGE("OUT_OF_MEMORY(0x%08x)", RUNTIME_INFO_ERROR_OUT_OF_MEMORY);
 			return RUNTIME_INFO_ERROR_OUT_OF_MEMORY;
 		}
 
@@ -482,17 +478,15 @@ int runtime_info_set_changed_cb(runtime_info_key_e key, runtime_info_changed_cb 
 	runtime_info_item->event_subscription->changed_cb = callback;
 	runtime_info_item->event_subscription->user_data = user_data;
 
-	if (runtime_info_item->event_subscription->most_recent_value != NULL) {
+	if (runtime_info_item->event_subscription->most_recent_value != NULL)
 		free(runtime_info_item->event_subscription->most_recent_value);
-	}
 
 	runtime_info_item->event_subscription->most_recent_value = NULL;
 
-	if (subscribe_event == true) {
+	if (subscribe_event == true)
 		return set_event_cb();
-	} else {
+	else
 		return RUNTIME_INFO_ERROR_NONE;
-	}
 }
 
 int runtime_info_unset_changed_cb(runtime_info_key_e key)
@@ -501,7 +495,7 @@ int runtime_info_unset_changed_cb(runtime_info_key_e key)
 	runtime_info_func_unset_event_cb unset_event_cb;
 
 	if (runtime_info_get_item(key, &runtime_info_item))	{
-		LOGE("[%s] INVALID_PARAMETER(0x%08x) : invalid key", __FUNCTION__, RUNTIME_INFO_ERROR_INVALID_PARAMETER);
+		LOGE("INVALID_PARAMETER(0x%08x) : invalid key", RUNTIME_INFO_ERROR_INVALID_PARAMETER);
 		return RUNTIME_INFO_ERROR_INVALID_PARAMETER;
 	}
 
@@ -518,7 +512,7 @@ int runtime_info_unset_changed_cb(runtime_info_key_e key)
 	unset_event_cb = runtime_info_item->unset_event_cb;
 
 	if (unset_event_cb == NULL)	{
-		LOGE("[%s] IO_ERROR(0x%08x) : failed to unset callback for the runtime information", __FUNCTION__, RUNTIME_INFO_ERROR_IO_ERROR);
+		LOGE("IO_ERROR(0x%08x) : failed to unset callback for the runtime information", RUNTIME_INFO_ERROR_IO_ERROR);
 		return RUNTIME_INFO_ERROR_IO_ERROR;
 	}
 
@@ -535,12 +529,12 @@ void runtime_info_updated(runtime_info_key_e key)
 	int retcode;
 
 	if (runtime_info_get_item(key, &runtime_info_item))	{
-		LOGE("[%s] INVALID_PARAMETER(0x%08x) : invalid key", __FUNCTION__, RUNTIME_INFO_ERROR_INVALID_PARAMETER);
+		LOGE("INVALID_PARAMETER(0x%08x) : invalid key", RUNTIME_INFO_ERROR_INVALID_PARAMETER);
 		return;
 	}
 
 	if (runtime_info_item->event_subscription == NULL) {
-		LOGE("[%s] IO_ERROR(0x%08x) : invalid event subscription", __FUNCTION__, RUNTIME_INFO_ERROR_IO_ERROR);
+		LOGE("IO_ERROR(0x%08x) : invalid event subscription", RUNTIME_INFO_ERROR_IO_ERROR);
 		return;
 	}
 
@@ -549,19 +543,18 @@ void runtime_info_updated(runtime_info_key_e key)
 	retcode = runtime_info_get_value(key, runtime_info_item->data_type, &current_value);
 
 	if (retcode != RUNTIME_INFO_ERROR_NONE)	{
-		LOGE("[%s] IO_ERROR(0x%08x) : failed to get the runtime information", __FUNCTION__, RUNTIME_INFO_ERROR_IO_ERROR);
+		LOGE("IO_ERROR(0x%08x) : failed to get the runtime information", RUNTIME_INFO_ERROR_IO_ERROR);
 		return;
 	}
 
 	if (runtime_info_item->event_subscription->most_recent_value != NULL) {
-		if (!memcmp(runtime_info_item->event_subscription->most_recent_value, &current_value, sizeof(runtime_info_value_u))) {
+		if (!memcmp(runtime_info_item->event_subscription->most_recent_value, &current_value, sizeof(runtime_info_value_u)))
 			dispatch_event = false;
-		}
 	} else {
 		runtime_info_item->event_subscription->most_recent_value = calloc(1, sizeof(runtime_info_value_u));
 
 		if (runtime_info_item->event_subscription->most_recent_value == NULL) {
-			LOGE("[%s] OUT_OF_MEMORY(0x%08x)", __FUNCTION__, RUNTIME_INFO_ERROR_OUT_OF_MEMORY);
+			LOGE("OUT_OF_MEMORY(0x%08x)", RUNTIME_INFO_ERROR_OUT_OF_MEMORY);
 			return;
 		}
 	}
