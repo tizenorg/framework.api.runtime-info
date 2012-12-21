@@ -28,7 +28,7 @@
 #undef LOG_TAG
 #endif
 
-#define LOG_TAG "TIZEN_N_RUNTIME_INFO"
+#define LOG_TAG "CAPI_SYSTEM_RUNTIME_INFO"
 
 static const char *VCONF_LOCATION_SERVICE_ENABLED = VCONFKEY_LOCATION_ENABLED;
 static const char *VCONF_LOCATION_AGPS_ENABLED = "db/location/setting/AgpsEnabled";
