@@ -129,13 +129,12 @@ int runtime_info_language_get_value(runtime_info_value_h value)
 	if (runtime_info_vconf_get_value_string(VCONF_LANGUAGE, &vconf_value))
 		return RUNTIME_INFO_ERROR_IO_ERROR;
 
-	token = strtok(vconf_value, ".");
-	value->s = strdup(token);
-	free(vconf_value);
-	if (value->s == NULL) {
-		LOGE("OUT_OF_MEMORY(0x%08x)", RUNTIME_INFO_ERROR_OUT_OF_MEMORY);
-		return RUNTIME_INFO_ERROR_OUT_OF_MEMORY;
-	}
+	token = strchr(vconf_value, '.');
+
+	if(token)
+		*token = '\0';
+
+	value->s = vconf_value;
 
 	return RUNTIME_INFO_ERROR_NONE;
 }
