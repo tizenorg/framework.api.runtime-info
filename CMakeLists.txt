@@ -29,7 +29,7 @@ ENDIF("${ARCH}" STREQUAL "arm")
 ADD_DEFINITIONS("-DPREFIX=\"${CMAKE_INSTALL_PREFIX}\"")
 ADD_DEFINITIONS("-DSLP_DEBUG")
 
-SET(CMAKE_EXE_LINKER_FLAGS "-Wl,--as-needed -Wl,--rpath=/usr/lib")
+SET(CMAKE_EXE_LINKER_FLAGS "-fvisibility=hidden -Wl,--as-needed -Wl,--rpath=/usr/lib")
 
 aux_source_directory(src SOURCES)
 ADD_LIBRARY(${fw_name} SHARED ${SOURCES})
