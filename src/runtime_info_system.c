@@ -142,6 +142,13 @@ void runtime_info_vibration_enabled_unset_event_cb()
 
 int runtime_info_rotation_lock_enabled_get_value(runtime_info_value_h value)
 {
+	value->b = false;
+
+	return RUNTIME_INFO_ERROR_INVALID_PARAMETER;
+}
+
+int runtime_info_auto_rotation_enabled_get_value(runtime_info_value_h value)
+{
 	bool vconf_value;
 
 	if (runtime_info_vconf_get_value_bool(VCONF_ROTATION_LOCK_ENABLED, &vconf_value))
@@ -152,12 +159,12 @@ int runtime_info_rotation_lock_enabled_get_value(runtime_info_value_h value)
 	return RUNTIME_INFO_ERROR_NONE;
 }
 
-int runtime_info_rotation_lock_enabled_set_event_cb()
+int runtime_info_auto_rotation_enabled_set_event_cb()
 {
-	return runtime_info_vconf_set_event_cb(VCONF_ROTATION_LOCK_ENABLED, RUNTIME_INFO_KEY_ROTATION_LOCK_ENABLED, 0);
+	return runtime_info_vconf_set_event_cb(VCONF_ROTATION_LOCK_ENABLED, RUNTIME_INFO_KEY_AUTO_ROTATION_ENABLED, 0);
 }
 
-void runtime_info_rotation_lock_enabled_unset_event_cb()
+void runtime_info_auto_rotation_enabled_unset_event_cb()
 {
 	runtime_info_vconf_unset_event_cb(VCONF_ROTATION_LOCK_ENABLED, 0);
 }

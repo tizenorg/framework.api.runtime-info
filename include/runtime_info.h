@@ -11,7 +11,7 @@
  * distributed under the License is distributed on an AS IS BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
- * limitations under the License. 
+ * limitations under the License.
  */
 
 #ifndef __TIZEN_SYSTEM_RUNTIME_INFO_H__
@@ -32,8 +32,7 @@ extern "C"
 /**
  * @brief Enumeration of error code for runtime information
  */
-typedef enum
-{
+typedef enum {
 	RUNTIME_INFO_ERROR_NONE = TIZEN_ERROR_NONE, /**< Successful */
 	RUNTIME_INFO_ERROR_INVALID_PARAMETER = TIZEN_ERROR_INVALID_PARAMETER, /**< Invalid parameter */
 	RUNTIME_INFO_ERROR_OUT_OF_MEMORY = TIZEN_ERROR_OUT_OF_MEMORY, /**< Out of memory */
@@ -43,8 +42,7 @@ typedef enum
 /**
  * @brief Enumeration of key for runtime information
  */
-typedef enum
-{
+typedef enum {
 	RUNTIME_INFO_KEY_FLIGHT_MODE_ENABLED, /**<Indicates whether the device is in flight mode. */
 	RUNTIME_INFO_KEY_WIFI_STATUS, /**<Indicates the current status of Wi-Fi. */
 	RUNTIME_INFO_KEY_BLUETOOTH_ENABLED, /**<Indicates whether Bluetooth is enabled. */
@@ -59,7 +57,7 @@ typedef enum
 	RUNTIME_INFO_KEY_DATA_ROAMING_ENABLED, /**<Indicates whether data roaming is enabled. */
 	RUNTIME_INFO_KEY_SILENT_MODE_ENABLED, /**<Indicates whether the device is in silent mode. */
 	RUNTIME_INFO_KEY_VIBRATION_ENABLED, /**<Indicates whether vibration is enabled. */
-	RUNTIME_INFO_KEY_ROTATION_LOCK_ENABLED, /**<Indicates whether rotation lock is enabled. */
+	RUNTIME_INFO_KEY_ROTATION_LOCK_ENABLED,
 	RUNTIME_INFO_KEY_24HOUR_CLOCK_FORMAT_ENABLED, /**<Indicates whether 24-hour clock is enabled. */
 	RUNTIME_INFO_KEY_FIRST_DAY_OF_WEEK, /**<Indicates the first day of week. */
 	RUNTIME_INFO_KEY_LANGUAGE, /**<Indicates the current language setting. */
@@ -73,14 +71,14 @@ typedef enum
 	RUNTIME_INFO_KEY_USB_CONNECTED, /**<Indicates whether USB is connected. */
 	RUNTIME_INFO_KEY_CHARGER_CONNECTED, /**<Indicates whether charger is connected. */
 	RUNTIME_INFO_KEY_VIBRATION_LEVEL_HAPTIC_FEEDBACK, /**<Indicates the current vibration level of haptic feedback. */
+	RUNTIME_INFO_KEY_AUTO_ROTATION_ENABLED, /**<Indicates whether auto rotation is enabled. */
 } runtime_info_key_e;
 
 
 /**
  * @brief Enumeration of Wi-Fi status
  */
-typedef enum
-{
+typedef enum {
 	RUNTIME_INFO_WIFI_STATUS_DISABLED, /**< GPS is disabled. */
 	RUNTIME_INFO_WIFI_STATUS_UNCONNECTED, /**< Wi-Fi is enabled and network connection is not established. */
 	RUNTIME_INFO_WIFI_STATUS_CONNECTED, /**< Network connection is established in Wi-Fi network. */
@@ -89,8 +87,7 @@ typedef enum
 /**
  * @brief Enumeration of GPS status
  */
-typedef enum
-{
+typedef enum {
 	RUNTIME_INFO_GPS_STATUS_DISABLED, /**< GPS is disabled. */
 	RUNTIME_INFO_GPS_STATUS_SEARCHING, /**< GPS is searching for satellites. */
 	RUNTIME_INFO_GPS_STATUS_CONNECTED, /**< GPS connection is established. */
@@ -99,8 +96,7 @@ typedef enum
 /**
  * @brief Enumeration of first day of week
  */
-typedef enum
-{
+typedef enum {
 	RUNTIME_INFO_FIRST_DAY_OF_WEEK_SUNDAY, /**< Sunday */
 	RUNTIME_INFO_FIRST_DAY_OF_WEEK_MONDAY, /**< Monday */
 	RUNTIME_INFO_FIRST_DAY_OF_WEEK_TUESDAY, /**< Tuesday */
@@ -113,8 +109,7 @@ typedef enum
 /**
  * @brief Enumeration of audio jack status
  */
-typedef enum
-{
+typedef enum {
 	RUNTIME_INFO_AUDIO_JACK_STATUS_UNCONNECTED, /**< audio jack is not connected */
 	RUNTIME_INFO_AUDIO_JACK_STATUS_CONNECTED_3WIRE, /**< 3-conductor wire is connected. */
 	RUNTIME_INFO_AUDIO_JACK_STATUS_CONNECTED_4WIRE, /**< 4-conductor wire is connected. */
@@ -170,7 +165,7 @@ int runtime_info_get_value_double(runtime_info_key_e key, double *value);
 /**
  * @brief   Gets the string value for specified runtime information
  * @details This function gets current state of the given key which represents specific runtime information.
- * @remarks @a value must be released with @c free() by you. 
+ * @remarks @a value must be released with @c free() by you.
  * @param[in] key The runtime information  key from which data should be read
  * @param[out] value The current value of the given key
  * @return  0 on success, otherwise a negative error value.
@@ -201,7 +196,7 @@ int runtime_info_set_changed_cb(runtime_info_key_e key, runtime_info_changed_cb 
 
 
 /**
- * @brief   Unregisters the callback function. 
+ * @brief   Unregisters the callback function.
  *
  * @param[in] key The runtime information type
  * @return  0 on success, otherwise a negative error value.

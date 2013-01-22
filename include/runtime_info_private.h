@@ -11,7 +11,7 @@
  * distributed under the License is distributed on an AS IS BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
- * limitations under the License. 
+ * limitations under the License.
  */
 
 
@@ -39,7 +39,7 @@ typedef union {
 	char *s;
 } runtime_info_value_u;
 
-typedef runtime_info_value_u *runtime_info_value_h;
+typedef runtime_info_value_u * runtime_info_value_h;
 
 typedef int (*runtime_info_func_get_value) (runtime_info_value_h value);
 typedef int (*runtime_info_func_set_event_cb) (void);
@@ -116,8 +116,6 @@ int runtime_info_vibration_enabled_set_event_cb(void);
 void runtime_info_vibration_enabled_unset_event_cb(void);
 
 int runtime_info_rotation_lock_enabled_get_value(runtime_info_value_h);
-int runtime_info_rotation_lock_enabled_set_event_cb(void);
-void runtime_info_rotation_lock_enabled_unset_event_cb(void);
 
 int runtime_info_24hour_format_get_value(runtime_info_value_h);
 int runtime_info_24hour_format_set_event_cb(void);
@@ -166,6 +164,10 @@ void runtime_info_charger_connected_unset_event_cb();
 int runtime_info_vibration_level_haptic_feedback_get_value(runtime_info_value_h value);
 int runtime_info_vibration_level_haptic_feedback_set_event_cb();
 void runtime_info_vibration_level_haptic_feedback_unset_event_cb();
+
+int runtime_info_auto_rotation_enabled_get_value(runtime_info_value_h);
+int runtime_info_auto_rotation_enabled_set_event_cb(void);
+void runtime_info_auto_rotation_enabled_unset_event_cb(void);
 
 #ifdef __cplusplus
 }

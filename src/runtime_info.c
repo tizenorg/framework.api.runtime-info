@@ -185,8 +185,8 @@ runtime_info_item_s runtime_info_item_table[] = {
 	RUNTIME_INFO_KEY_ROTATION_LOCK_ENABLED, /**<Indicates whether rotation lock is enabled. */
 	RUNTIME_INFO_DATA_TYPE_BOOL,
 	runtime_info_rotation_lock_enabled_get_value,
-	runtime_info_rotation_lock_enabled_set_event_cb,
-	runtime_info_rotation_lock_enabled_unset_event_cb,
+	NULL,
+	NULL,
 	NULL
 },
 
@@ -244,7 +244,6 @@ runtime_info_item_s runtime_info_item_table[] = {
 	NULL
 },
 
-
 {
 	RUNTIME_INFO_KEY_BATTERY_IS_CHARGING, /**<Indicates the battery is currently charging. */
 	RUNTIME_INFO_DATA_TYPE_BOOL,
@@ -253,7 +252,6 @@ runtime_info_item_s runtime_info_item_table[] = {
 	runtime_info_battery_charging_unset_event_cb,
 	NULL
 },
-
 
 {
 	RUNTIME_INFO_KEY_TV_OUT_CONNECTED, /**<Indicates whether TV out is connected. */
@@ -264,7 +262,6 @@ runtime_info_item_s runtime_info_item_table[] = {
 	NULL
 },
 
-
 {
 	RUNTIME_INFO_KEY_AUDIO_JACK_STATUS, /**<Indicates the current status of audio jack. */
 	RUNTIME_INFO_DATA_TYPE_INT,
@@ -274,7 +271,6 @@ runtime_info_item_s runtime_info_item_table[] = {
 	NULL
 },
 
-
 {
 	RUNTIME_INFO_KEY_SLIDING_KEYBOARD_OPENED, /**<Indicates whether sliding keyboard is opened. */
 	RUNTIME_INFO_DATA_TYPE_BOOL,
@@ -283,7 +279,6 @@ runtime_info_item_s runtime_info_item_table[] = {
 	runtime_info_sliding_keyboard_opened_unset_event_cb,
 	NULL
 },
-
 
 {
 	RUNTIME_INFO_KEY_USB_CONNECTED, /**<Indicates whether usb is connected. */
@@ -312,6 +307,14 @@ runtime_info_item_s runtime_info_item_table[] = {
 	NULL
 },
 
+{
+	RUNTIME_INFO_KEY_AUTO_ROTATION_ENABLED, /**<Indicates whether auto rotation is enabled. */
+	RUNTIME_INFO_DATA_TYPE_BOOL,
+	runtime_info_auto_rotation_enabled_get_value,
+	runtime_info_auto_rotation_enabled_set_event_cb,
+	runtime_info_auto_rotation_enabled_unset_event_cb,
+	NULL
+},
 
 {
 	RUNTIME_INFO_MAX, RUNTIME_INFO_DATA_TYPE_INT, NULL, NULL, NULL, NULL

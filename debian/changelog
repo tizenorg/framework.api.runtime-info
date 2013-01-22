@@ -1,3 +1,11 @@
+capi-system-runtime-info (0.0.2-1) unstable; urgency=low
+
+  * Change key name
+  * Git: framework/api/runtime-info
+  * Tag: capi-system-runtime-info_0.0.2-1
+
+ -- Kwanwoo Nam <kw46.nam@samsung.com>  Tue, 22 Jan 2013 15:40:00 +0900
+
 capi-system-runtime-info (0.0.1-11) unstable; urgency=low
 
   * Fixed prevent defect case : CID 10685
