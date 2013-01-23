@@ -40,7 +40,7 @@ make %{?jobs:-j%jobs}
 rm -rf %{buildroot}
 
 mkdir -p %{buildroot}/usr/share/license
-cp -f LICENSE %{buildroot}/usr/share/license/%{name}
+cp -f LICENSE.APLv2 %{buildroot}/usr/share/license/%{name}
 
 %make_install
 
