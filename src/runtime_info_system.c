@@ -374,18 +374,7 @@ int runtime_info_vibration_level_haptic_feedback_get_value(runtime_info_value_h 
 	if (runtime_info_vconf_get_value_int(VCONFKEY_SETAPPL_TOUCH_FEEDBACK_VIBRATION_LEVEL_INT, &vconf_value))
 		return RUNTIME_INFO_ERROR_IO_ERROR;
 
-	switch (vconf_value) {
-	case 0:
-	case 1:
-	case 2:
-	case 3:
-	case 4:
-	case 5:
 		value->i = vconf_value;
-		break;
-	default:
-		return RUNTIME_INFO_ERROR_IO_ERROR;
-	}
 
 	return RUNTIME_INFO_ERROR_NONE;
 }
