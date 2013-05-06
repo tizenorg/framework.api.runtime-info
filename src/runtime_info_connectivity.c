@@ -36,7 +36,7 @@ static const char *VCONF_WIFI_HOTSPOT_ENABLED = VCONFKEY_MOBILE_HOTSPOT_MODE;
 static const char *VCONF_BT_HOTSPOT_ENABLED = VCONFKEY_MOBILE_HOTSPOT_MODE;
 static const char *VCONF_USB_HOTSPOT_ENABLED = VCONFKEY_MOBILE_HOTSPOT_MODE;
 static const char *VCONF_PACKET_DATA_ENABLED = VCONFKEY_3G_ENABLE;
-static const char *VCONF_DATA_ROAMING_ENABLED = "db/setting/data_roaming";
+static const char *VCONF_DATA_ROAMING_ENABLED = VCONFKEY_SETAPPL_STATE_DATA_ROAMING_BOOL;
 static const char *VCONF_GPS_STATUS = VCONFKEY_LOCATION_GPS_STATE;
 
 int runtime_info_wifi_status_get_value(runtime_info_value_h value)
