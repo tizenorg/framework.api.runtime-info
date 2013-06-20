@@ -31,9 +31,9 @@
 #define LOG_TAG "CAPI_SYSTEM_RUNTIME_INFO"
 
 static const char *VCONF_LOCATION_SERVICE_ENABLED = VCONFKEY_LOCATION_ENABLED;
-static const char *VCONF_LOCATION_AGPS_ENABLED = "db/location/setting/AgpsEnabled";
+static const char *VCONF_LOCATION_AGPS_ENABLED = VCONFKEY_LOCATION_AGPS_ENABLED;
 static const char *VCONF_LOCATION_NETWORK_ENABLED = VCONFKEY_LOCATION_NETWORK_ENABLED;
-static const char *VCONF_LOCATION_SENSOR_ENABLED = "db/location/setting/SensorEnabled";
+static const char *VCONF_LOCATION_SENSOR_ENABLED = VCONFKEY_LOCATION_SENSOR_ENABLED;
 
 int runtime_info_location_service_get_value(runtime_info_value_h value)
 {
