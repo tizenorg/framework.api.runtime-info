@@ -25,6 +25,10 @@ extern "C"
 {
 #endif
 
+#ifndef API
+#define API __attribute__ ((visibility("default")))
+#endif
+
 typedef enum {
 	RUNTIME_INFO_DATA_TYPE_STRING,
 	RUNTIME_INFO_DATA_TYPE_INT,

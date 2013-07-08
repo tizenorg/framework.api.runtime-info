@@ -359,7 +359,7 @@ int runtime_info_get_value(runtime_info_key_e key, runtime_info_data_type_e data
 	return RUNTIME_INFO_ERROR_NONE;
 }
 
-int runtime_info_get_value_int(runtime_info_key_e key, int *value)
+API int runtime_info_get_value_int(runtime_info_key_e key, int *value)
 {
 	int retcode;
 	runtime_info_value_u runtime_info_value;
@@ -377,7 +377,7 @@ int runtime_info_get_value_int(runtime_info_key_e key, int *value)
 	return retcode;
 }
 
-int runtime_info_get_value_bool(runtime_info_key_e key, bool *value)
+API int runtime_info_get_value_bool(runtime_info_key_e key, bool *value)
 {
 	int retcode;
 	runtime_info_value_u runtime_info_value;
@@ -395,7 +395,7 @@ int runtime_info_get_value_bool(runtime_info_key_e key, bool *value)
 	return retcode;
 }
 
-int runtime_info_get_value_double(runtime_info_key_e key, double *value)
+API int runtime_info_get_value_double(runtime_info_key_e key, double *value)
 {
 	int retcode;
 	runtime_info_value_u runtime_info_value;
@@ -413,7 +413,7 @@ int runtime_info_get_value_double(runtime_info_key_e key, double *value)
 	return retcode;
 }
 
-int runtime_info_get_value_string(runtime_info_key_e key, char **value)
+API int runtime_info_get_value_string(runtime_info_key_e key, char **value)
 {
 	int retcode;
 	runtime_info_value_u runtime_info_value;
@@ -431,7 +431,7 @@ int runtime_info_get_value_string(runtime_info_key_e key, char **value)
 	return retcode;
 }
 
-int runtime_info_set_changed_cb(runtime_info_key_e key, runtime_info_changed_cb callback, void *user_data)
+API int runtime_info_set_changed_cb(runtime_info_key_e key, runtime_info_changed_cb callback, void *user_data)
 {
 	runtime_info_item_h runtime_info_item;
 	runtime_info_func_set_event_cb set_event_cb;
@@ -483,7 +483,7 @@ int runtime_info_set_changed_cb(runtime_info_key_e key, runtime_info_changed_cb 
 		return RUNTIME_INFO_ERROR_NONE;
 }
 
-int runtime_info_unset_changed_cb(runtime_info_key_e key)
+API int runtime_info_unset_changed_cb(runtime_info_key_e key)
 {
 	runtime_info_item_h runtime_info_item;
 	runtime_info_func_unset_event_cb unset_event_cb;
