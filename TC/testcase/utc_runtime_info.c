@@ -95,12 +95,6 @@ static void utc_runtime_info_LOCATION_NETWORK_POSITION_ENABLED_negative3(void);
 static void utc_runtime_info_LOCATION_NETWORK_POSITION_ENABLED_positive1(void);
 static void utc_runtime_info_LOCATION_NETWORK_POSITION_ENABLED_positive2(void);
 static void utc_runtime_info_LOCATION_NETWORK_POSITION_ENABLED_positive3(void);
-static void utc_runtime_info_LOCATION_SENSOR_AIDING_ENABLED_negative1(void);
-static void utc_runtime_info_LOCATION_SENSOR_AIDING_ENABLED_negative2(void);
-static void utc_runtime_info_LOCATION_SENSOR_AIDING_ENABLED_negative3(void);
-static void utc_runtime_info_LOCATION_SENSOR_AIDING_ENABLED_positive1(void);
-static void utc_runtime_info_LOCATION_SENSOR_AIDING_ENABLED_positive2(void);
-static void utc_runtime_info_LOCATION_SENSOR_AIDING_ENABLED_positive3(void);
 static void utc_runtime_info_LOCATION_SERVICE_ENABLED_negative1(void);
 static void utc_runtime_info_LOCATION_SERVICE_ENABLED_negative2(void);
 static void utc_runtime_info_LOCATION_SERVICE_ENABLED_negative3(void);
@@ -267,12 +261,6 @@ struct tet_testlist tet_testlist[] = {
 	{utc_runtime_info_LOCATION_NETWORK_POSITION_ENABLED_positive1, 1},
 	{utc_runtime_info_LOCATION_NETWORK_POSITION_ENABLED_positive2, 1},
 	{utc_runtime_info_LOCATION_NETWORK_POSITION_ENABLED_positive3, 1},
-	{utc_runtime_info_LOCATION_SENSOR_AIDING_ENABLED_negative1, 1},
-	{utc_runtime_info_LOCATION_SENSOR_AIDING_ENABLED_negative2, 1},
-	{utc_runtime_info_LOCATION_SENSOR_AIDING_ENABLED_negative3, 1},
-	{utc_runtime_info_LOCATION_SENSOR_AIDING_ENABLED_positive1, 1},
-	{utc_runtime_info_LOCATION_SENSOR_AIDING_ENABLED_positive2, 1},
-	{utc_runtime_info_LOCATION_SENSOR_AIDING_ENABLED_positive3, 1},
 	{utc_runtime_info_LOCATION_SERVICE_ENABLED_negative1, 1},
 	{utc_runtime_info_LOCATION_SERVICE_ENABLED_negative2, 1},
 	{utc_runtime_info_LOCATION_SERVICE_ENABLED_negative3, 1},
@@ -1435,96 +1423,6 @@ void utc_runtime_info_LOCATION_NETWORK_POSITION_ENABLED_positive3(void)
 	char *TC_NAME = __FUNCTION__;
 	int retcode;
 	runtime_info_key_e key = RUNTIME_INFO_KEY_LOCATION_NETWORK_POSITION_ENABLED;
-
-	runtime_info_set_changed_cb(key, runtime_info_changed, NULL);
-
-	retcode = runtime_info_unset_changed_cb(key);
-
-	if (retcode == RUNTIME_INFO_ERROR_NONE)
-		dts_pass(TC_NAME, "passed");
-	else
-		dts_fail(TC_NAME, "failed");
-}
-
-
-void utc_runtime_info_LOCATION_SENSOR_AIDING_ENABLED_negative1(void)
-{
-	char *TC_NAME = __FUNCTION__;
-	int retcode;
-	runtime_info_key_e key = RUNTIME_INFO_KEY_LOCATION_SENSOR_AIDING_ENABLED;
-	char *value;
-
-	retcode = runtime_info_get_value_string(key, &value);
-
-	if (retcode == RUNTIME_INFO_ERROR_INVALID_PARAMETER)
-		dts_pass(TC_NAME, "passed");
-	else
-		dts_fail(TC_NAME, "failed");
-}
-
-
-void utc_runtime_info_LOCATION_SENSOR_AIDING_ENABLED_negative2(void)
-{
-	char *TC_NAME = __FUNCTION__;
-	int retcode;
-	runtime_info_key_e key = RUNTIME_INFO_KEY_LOCATION_SENSOR_AIDING_ENABLED;
-
-	retcode = runtime_info_get_value_bool(key, NULL);
-
-	if (retcode == RUNTIME_INFO_ERROR_INVALID_PARAMETER)
-		dts_pass(TC_NAME, "passed");
-	else
-		dts_fail(TC_NAME, "failed");
-}
-
-void utc_runtime_info_LOCATION_SENSOR_AIDING_ENABLED_negative3(void)
-{
-	char *TC_NAME = __FUNCTION__;
-	int retcode;
-	runtime_info_key_e key = RUNTIME_INFO_KEY_LOCATION_SENSOR_AIDING_ENABLED;
-
-	retcode = runtime_info_set_changed_cb(key, NULL, NULL);
-
-	if (retcode == RUNTIME_INFO_ERROR_INVALID_PARAMETER)
-		dts_pass(TC_NAME, "passed");
-	else
-		dts_fail(TC_NAME, "failed");
-}
-
-void utc_runtime_info_LOCATION_SENSOR_AIDING_ENABLED_positive1(void)
-{
-	char *TC_NAME = __FUNCTION__;
-	int retcode;
-	runtime_info_key_e key = RUNTIME_INFO_KEY_LOCATION_SENSOR_AIDING_ENABLED;
-	bool value;
-
-	retcode = runtime_info_get_value_bool(key, &value);
-
-	if (retcode == RUNTIME_INFO_ERROR_NONE)
-		dts_pass(TC_NAME, "passed");
-	else
-		dts_fail(TC_NAME, "failed");
-}
-
-void utc_runtime_info_LOCATION_SENSOR_AIDING_ENABLED_positive2(void)
-{
-	char *TC_NAME = __FUNCTION__;
-	int retcode;
-	runtime_info_key_e key = RUNTIME_INFO_KEY_LOCATION_SENSOR_AIDING_ENABLED;
-
-	retcode = runtime_info_set_changed_cb(key, runtime_info_changed, NULL);
-
-	if (retcode == RUNTIME_INFO_ERROR_NONE)
-		dts_pass(TC_NAME, "passed");
-	else
-		dts_fail(TC_NAME, "failed");
-}
-
-void utc_runtime_info_LOCATION_SENSOR_AIDING_ENABLED_positive3(void)
-{
-	char *TC_NAME = __FUNCTION__;
-	int retcode;
-	runtime_info_key_e key = RUNTIME_INFO_KEY_LOCATION_SENSOR_AIDING_ENABLED;
 
 	runtime_info_set_changed_cb(key, runtime_info_changed, NULL);
 

@@ -137,15 +137,6 @@ runtime_info_item_s runtime_info_item_table[] = {
 },
 
 {
-	RUNTIME_INFO_KEY_LOCATION_SENSOR_AIDING_ENABLED, /**<Indicates whether the location service is allowed to use pedestrian sensors for positioning performance. */
-	RUNTIME_INFO_DATA_TYPE_BOOL,
-	runtime_info_location_sensor_get_value,
-	runtime_info_location_sensor_set_event_cb,
-	runtime_info_location_sensor_unset_event_cb,
-	NULL
-},
-
-{
 	RUNTIME_INFO_KEY_PACKET_DATA_ENABLED, /**<Indicates Whether the packet data through 3G network is enabled. */
 	RUNTIME_INFO_DATA_TYPE_BOOL,
 	runtime_info_packet_data_get_value,
