@@ -1,10 +1,11 @@
 Name:       capi-system-runtime-info
-Summary:    A Runtime Information library in Tizen Native API
-Version:    0.0.1
-Release:    9
-Group:      TO_BE/FILLED_IN
-License:    TO BE FILLED IN
+Summary:    A Runtime Information library in Core API
+Version:    0.0.3
+Release:    0
+Group:      System/Libraries
+License:    Apache-2.0
 Source0:    %{name}-%{version}.tar.gz
+Source1001: 	%{name}.manifest
 BuildRequires:  cmake
 BuildRequires:  pkgconfig(dlog)
 BuildRequires:  pkgconfig(vconf)
@@ -16,8 +17,8 @@ Requires(postun): /sbin/ldconfig
 
 
 %package devel
-Summary:  A Runtime Information library in Tizen Native API (Development)
-Group:    TO_BE/FILLED_IN
+Summary:  A Runtime Information library in Core API (Development)
+Group:    Development/System
 Requires: %{name} = %{version}-%{release}
 Requires:  pkgconfig(capi-base-common)
 
@@ -27,18 +28,22 @@ Requires:  pkgconfig(capi-base-common)
 
 %prep
 %setup -q
-
+cp %{SOURCE1001} .
 
 %build
-MAJORVER=`echo %{version} | awk 'BEGIN {FS="."}{print $1}'`  
-cmake . -DCMAKE_INSTALL_PREFIX=/usr -DFULLVER=%{version} -DMAJORVER=${MAJORVER} 
+MAJORVER=`echo %{version} | awk 'BEGIN {FS="."}{print $1}'`
+%cmake . -DFULLVER=%{version} -DMAJORVER=${MAJORVER}
 
 
 make %{?jobs:-j%jobs}
 
 %install
 rm -rf %{buildroot}
+
 %make_install
+
+mkdir -p %{buildroot}/usr/share/license
+cp -f LICENSE %{buildroot}/usr/share/license/%{name}
 
 %post -p /sbin/ldconfig
 
@@ -46,9 +51,12 @@ rm -rf %{buildroot}
 
 
 %files
+%manifest %{name}.manifest
+/usr/share/license/%{name}
 %{_libdir}/lib*.so.*
 
 %files devel
+%manifest %{name}.manifest
 %{_includedir}/system/*.h
 %{_libdir}/pkgconfig/*.pc
 %{_libdir}/lib*.so

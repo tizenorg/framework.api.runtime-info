@@ -11,7 +11,7 @@
  * distributed under the License is distributed on an AS IS BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
- * limitations under the License. 
+ * limitations under the License.
  */
 
 
@@ -23,6 +23,10 @@
 #ifdef __cplusplus
 extern "C"
 {
+#endif
+
+#ifndef API
+#define API __attribute__ ((visibility("default")))
 #endif
 
 typedef enum {
@@ -39,7 +43,7 @@ typedef union {
 	char *s;
 } runtime_info_value_u;
 
-typedef runtime_info_value_u *runtime_info_value_h;
+typedef runtime_info_value_u * runtime_info_value_h;
 
 typedef int (*runtime_info_func_get_value) (runtime_info_value_h value);
 typedef int (*runtime_info_func_set_event_cb) (void);
@@ -48,7 +52,7 @@ typedef void (*runtime_info_func_unset_event_cb) (void);
 void runtime_info_updated(runtime_info_key_e key);
 
 int runtime_info_vconf_get_value_int(const char *vconf_key, int *value);
-int runtime_info_vconf_get_value_bool(const char *vconf_key, bool *value);
+int runtime_info_vconf_get_value_bool(const char *vconf_key, int *value);
 int runtime_info_vconf_get_value_double(const char *vconf_key, double *value);
 int runtime_info_vconf_get_value_string(const char *vconf_key, char **value);
 
@@ -95,10 +99,6 @@ int runtime_info_location_network_get_value(runtime_info_value_h);
 int runtime_info_location_network_set_event_cb(void);
 void runtime_info_location_network_unset_event_cb(void);
 
-int runtime_info_location_sensor_get_value(runtime_info_value_h);
-int runtime_info_location_sensor_set_event_cb(void);
-void runtime_info_location_sensor_unset_event_cb(void);
-
 int runtime_info_packet_data_get_value(runtime_info_value_h);
 int runtime_info_packet_data_set_event_cb(void);
 void runtime_info_packet_data_unset_event_cb(void);
@@ -114,10 +114,6 @@ void runtime_info_silent_mode_unset_event_cb(void);
 int runtime_info_vibration_enabled_get_value(runtime_info_value_h);
 int runtime_info_vibration_enabled_set_event_cb(void);
 void runtime_info_vibration_enabled_unset_event_cb(void);
-
-int runtime_info_rotation_lock_enabled_get_value(runtime_info_value_h);
-int runtime_info_rotation_lock_enabled_set_event_cb(void);
-void runtime_info_rotation_lock_enabled_unset_event_cb(void);
 
 int runtime_info_24hour_format_get_value(runtime_info_value_h);
 int runtime_info_24hour_format_set_event_cb(void);
@@ -144,28 +140,32 @@ int runtime_info_battery_charging_set_event_cb(void);
 void runtime_info_battery_charging_unset_event_cb(void);
 
 int runtime_info_tvout_connected_get_value(runtime_info_value_h value);
-int runtime_info_tvout_connected_set_event_cb();
-void runtime_info_tvout_connected_unset_event_cb();
+int runtime_info_tvout_connected_set_event_cb(void);
+void runtime_info_tvout_connected_unset_event_cb(void);
 
 int runtime_info_audio_jack_status_get_value (runtime_info_value_h value);
-int runtime_info_audio_jack_status_set_event_cb ();
-void runtime_info_audio_jack_status_unset_event_cb();
+int runtime_info_audio_jack_status_set_event_cb(void);
+void runtime_info_audio_jack_status_unset_event_cb(void);
 
 int runtime_info_sliding_keyboard_opened_get_value(runtime_info_value_h value);
-int runtime_info_sliding_keyboard_opened_set_event_cb();
-void runtime_info_sliding_keyboard_opened_unset_event_cb();
+int runtime_info_sliding_keyboard_opened_set_event_cb(void);
+void runtime_info_sliding_keyboard_opened_unset_event_cb(void);
 
 int runtime_info_usb_connected_get_value(runtime_info_value_h value);
-int runtime_info_usb_connected_set_event_cb();
-void runtime_info_usb_connected_unset_event_cb();
+int runtime_info_usb_connected_set_event_cb(void);
+void runtime_info_usb_connected_unset_event_cb(void);
 
 int runtime_info_charger_connected_get_value(runtime_info_value_h value);
-int runtime_info_charger_connected_set_event_cb();
-void runtime_info_charger_connected_unset_event_cb();
+int runtime_info_charger_connected_set_event_cb(void);
+void runtime_info_charger_connected_unset_event_cb(void);
 
 int runtime_info_vibration_level_haptic_feedback_get_value(runtime_info_value_h value);
-int runtime_info_vibration_level_haptic_feedback_set_event_cb();
-void runtime_info_vibration_level_haptic_feedback_unset_event_cb();
+int runtime_info_vibration_level_haptic_feedback_set_event_cb(void);
+void runtime_info_vibration_level_haptic_feedback_unset_event_cb(void);
+
+int runtime_info_auto_rotation_enabled_get_value(runtime_info_value_h);
+int runtime_info_auto_rotation_enabled_set_event_cb(void);
+void runtime_info_auto_rotation_enabled_unset_event_cb(void);
 
 #ifdef __cplusplus
 }

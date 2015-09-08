@@ -11,7 +11,7 @@
  * distributed under the License is distributed on an AS IS BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
- * limitations under the License. 
+ * limitations under the License.
  */
 
 #include <stdio.h>
@@ -28,24 +28,23 @@
 #undef LOG_TAG
 #endif
 
-#define LOG_TAG "TIZEN_N_RUNTIME_INFO"
+#define LOG_TAG "CAPI_SYSTEM_RUNTIME_INFO"
 
-static const char *VCONF_24HOUR_FORMAT = "db/menu_widget/regionformat_time1224";
-static const char *VCONF_FIRST_DAY_OF_WEEK = "db/setting/weekofday_format";
+static const char *VCONF_24HOUR_FORMAT = VCONFKEY_REGIONFORMAT_TIME1224;
+static const char *VCONF_FIRST_DAY_OF_WEEK = VCONFKEY_SETAPPL_WEEKOFDAY_FORMAT_INT;
 static const char *VCONF_LANGUAGE = VCONFKEY_LANGSET;
 static const char *VCONF_REGION = VCONFKEY_REGIONFORMAT;
 
 int runtime_info_24hour_format_get_value(runtime_info_value_h value)
 {
 	int vconf_value;
-	
-	if (runtime_info_vconf_get_value_int(VCONF_24HOUR_FORMAT, &vconf_value))
-	{
-		return RUNTIME_INFO_ERROR_IO_ERROR;
-	}
+	int ret;
 
-	switch (vconf_value)
-	{
+	ret = runtime_info_vconf_get_value_int(VCONF_24HOUR_FORMAT, &vconf_value);
+	if (ret != RUNTIME_INFO_ERROR_NONE)
+		return ret;
+
+	switch (vconf_value) {
 	case VCONFKEY_TIME_FORMAT_12:
 		value->b = false;
 		break;
@@ -58,7 +57,7 @@ int runtime_info_24hour_format_get_value(runtime_info_value_h value)
 		return RUNTIME_INFO_ERROR_IO_ERROR;
 	}
 
-	return RUNTIME_INFO_ERROR_NONE;
+	return ret;
 }
 
 int runtime_info_24hour_format_set_event_cb()
@@ -74,14 +73,13 @@ void runtime_info_24hour_format_unset_event_cb()
 int runtime_info_first_day_of_week_get_value(runtime_info_value_h value)
 {
 	int vconf_value;
-	
-	if (runtime_info_vconf_get_value_int(VCONF_FIRST_DAY_OF_WEEK, &vconf_value))
-	{
-		return RUNTIME_INFO_ERROR_IO_ERROR;
-	}
+	int ret;
 
-	switch (vconf_value)
-	{
+	ret = runtime_info_vconf_get_value_int(VCONF_FIRST_DAY_OF_WEEK, &vconf_value);
+	if (ret != RUNTIME_INFO_ERROR_NONE)
+		return ret;
+
+	switch (vconf_value) {
 	case SETTING_WEEKOFDAY_FORMAT_SUNDAY:
 		value->i = RUNTIME_INFO_FIRST_DAY_OF_WEEK_SUNDAY;
 		break;
@@ -114,7 +112,7 @@ int runtime_info_first_day_of_week_get_value(runtime_info_value_h value)
 		return RUNTIME_INFO_ERROR_IO_ERROR;
 	}
 
-	return RUNTIME_INFO_ERROR_NONE;
+	return ret;
 }
 
 int runtime_info_first_day_of_week_set_event_cb()
@@ -130,15 +128,21 @@ void runtime_info_first_day_of_week_unset_event_cb()
 int runtime_info_language_get_value(runtime_info_value_h value)
 {
 	char *vconf_value;
-	
-	if (runtime_info_vconf_get_value_string(VCONF_LANGUAGE, &vconf_value))
-	{
-		return RUNTIME_INFO_ERROR_IO_ERROR;
-	}
+	char *token = NULL;
+	int ret;
+
+	ret = runtime_info_vconf_get_value_string(VCONF_LANGUAGE, &vconf_value);
+	if (ret != RUNTIME_INFO_ERROR_NONE)
+		return ret;
+
+	token = strchr(vconf_value, '.');
+
+	if(token)
+		*token = '\0';
 
 	value->s = vconf_value;
 
-	return RUNTIME_INFO_ERROR_NONE;
+	return ret;
 }
 
 int runtime_info_language_set_event_cb()
@@ -154,15 +158,13 @@ void runtime_info_language_unset_event_cb()
 int runtime_info_region_get_value(runtime_info_value_h value)
 {
 	char *vconf_value;
-	
-	if (runtime_info_vconf_get_value_string(VCONF_REGION, &vconf_value))
-	{
-		return RUNTIME_INFO_ERROR_IO_ERROR;
-	}
+	int ret;
 
-	value->s = vconf_value;
+	ret = runtime_info_vconf_get_value_string(VCONF_REGION, &vconf_value);
+	if (ret == RUNTIME_INFO_ERROR_NONE)
+		value->s = vconf_value;
 
-	return RUNTIME_INFO_ERROR_NONE;
+	return ret;
 }
 
 int runtime_info_region_set_event_cb()
@@ -170,7 +172,7 @@ int runtime_info_region_set_event_cb()
 	return runtime_info_vconf_set_event_cb(VCONF_REGION, RUNTIME_INFO_KEY_REGION, 0);
 }
 
-void runtime_info_region_unset_event_cb ()
+void runtime_info_region_unset_event_cb()
 {
 	runtime_info_vconf_unset_event_cb(VCONF_REGION, 0);
 }
