@@ -10,6 +10,7 @@ BuildRequires:  cmake
 BuildRequires:  pkgconfig(dlog)
 BuildRequires:  pkgconfig(vconf)
 BuildRequires:  pkgconfig(capi-base-common)
+BuildRequires:	pkgconfig(edbus)
 Requires(post): /sbin/ldconfig  
 Requires(postun): /sbin/ldconfig
 
@@ -43,7 +44,7 @@ rm -rf %{buildroot}
 %make_install
 
 mkdir -p %{buildroot}/usr/share/license
-cp -f LICENSE %{buildroot}/usr/share/license/%{name}
+cp -f LICENSE.APLv2 %{buildroot}/usr/share/license/%{name}
 
 %post -p /sbin/ldconfig
 
